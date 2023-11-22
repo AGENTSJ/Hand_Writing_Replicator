@@ -6,3 +6,5 @@ when the user need to convert any english paragraph ,the use can give the paragr
 
 here is a simpilifies overview of the working of the APP
 
+![Untitled Diagram drawio](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/dc122955-0efe-4006-b20d-e2f9f6e1686a)
+
