@@ -3,3 +3,4 @@ node_modules/
 outs/
 A_Z Handwritten Data.csv
 capalpha.npz
+__pycache__/
