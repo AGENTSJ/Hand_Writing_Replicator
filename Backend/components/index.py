@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import base64
 import cv2
 import numpy as np
@@ -7,6 +8,7 @@ import sys
 sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\routes')
 app = Flask(__name__)
 
+CORS(app)
 
 from user import user_bp
 from image_upload import image_bp

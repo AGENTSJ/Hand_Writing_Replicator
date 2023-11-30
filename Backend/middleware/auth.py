@@ -5,35 +5,37 @@ secret_key = "ItWasSupposedToBeMERN_Stack"
 
 
 def verify():
+
     try:
+        
+        
         token = request.headers['Authorization']
-        payload = jwt.decode(token,secret_key,algorithms=["HS256"])
-        request.user = payload
+       
+        if token is None:
+            return False
+        else:
         
-        return True
-    except Exception as e:
-        
-        return jsonify({"error from middleware(verify())":str(e)}),500
-
-# def auth_required(next):
-
-#     def wrapper(*args,**kwargs):
-#         try:
-          
-#             verify()
-#             return next(*args,**kwargs)
-        
-#         except Exception as e:
-#             print("error from middleware")
-#             return jsonify({"error from middleware":str(e)}),500
+            payload = jwt.decode(token,secret_key,algorithms=["HS256"])
+            request.user = payload
             
-#     return wrapper
-
-def auth(req):
-    try:
-        verify()
-        return True
+            return True
+            
     except Exception as e:
-        print(e)
+       
+        print("error in verify fn\n",e)
+        return False
+
+
+def auth():
+    try:
+        
+        valid = verify()
+        if valid:
+            return True
+        else:
+            return False
+        
+    except Exception as e:
+        print("error in authfn \n",e)
         return False
 

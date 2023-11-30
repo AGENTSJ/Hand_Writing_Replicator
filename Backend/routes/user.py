@@ -38,7 +38,7 @@ def create():
         
         User_collection.insert_one(vars(newuser))
 
-        return "<p>create user</p>"
+        return jsonify({"message":"success"}),200
     
     except Exception as e:
         return jsonify({"error":str(e)}),500
@@ -65,25 +65,30 @@ def login():
 
                 token = jwt.encode(payload,SECRET_KEY,algorithm="HS256")
 
-                return jsonify({'token':token})
-
+                return jsonify({'token':token,'valid':True})
+            
+            else:
+                return jsonify({"error":"Invalid credentials","valid":False}),500
+        else:
+            return jsonify({"error":"Invalid credentials","valid":False}),500
 
     except Exception as e:
         
         return jsonify({"error":str(e)}),500
 
 
-@user_bp.route('/profile',methods=['GET'])
+@user_bp.route('/verify',methods=['POST'])
 
 
-def profile():
+def validity():
     try:
-        valid = auth(request)
-        if valid:
 
-            return jsonify({"user":request.user})
+        valid = auth()
+
+        if valid:
+            return jsonify({"valid":True})
         else:
-            return jsonify({"error":"invalid token"}),500
+            return jsonify({"valid":False}),500
         
     except Exception as e:
-        return jsonify({"error from profile":str(e)}),500
+        return jsonify({"error from profile":str(e),"valid":False}),500

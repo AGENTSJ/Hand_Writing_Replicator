@@ -69,6 +69,9 @@ def create_A4_out(user_id,inputstring):
 
             if(lett == " "):
                     start_left = start_left+wordspace
+            elif(lett == "\n"):
+                start_left = margin
+                start_height = start_height+lineheight
             else:
                 
                 idx = alphabet_dict[lett]
