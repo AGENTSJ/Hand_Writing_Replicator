@@ -205,7 +205,7 @@ def Find_Mising(Dimn_arr):
             miss_alph.append(alphabets[idx])
 
     return miss_alph
-            
+            # query from db and find the missing alphabet in next update
 
         
 def Main_Pipeline(img):

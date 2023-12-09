@@ -21,8 +21,6 @@ def verify():
             return True
             
     except Exception as e:
-       
-        print("error in verify fn\n",e)
         return False
 
 

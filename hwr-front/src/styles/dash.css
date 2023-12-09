@@ -24,3 +24,23 @@
     align-self: start;
     margin-left: 380px;
 }
+.updatebtn{
+    margin-top: 20px;
+}
+.dragndrop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.uploadbtn{
+    height: 50px;
+    width: 100px;
+    border: none;
+}
+.enabled{
+    background-color: rgb(7, 233, 7);
+}
+.choosefile{
+    margin:10px
+}

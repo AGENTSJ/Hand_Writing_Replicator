@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 // import Cookies from 'js-cookie';
-
+import { useContext } from 'react';
+import { AuthContext } from '../context/authcontext';
 function LoginForm(props) {
+    const {authToken,setAuthToken} = useContext(AuthContext)
     // console.log(typeof props.props.setLogState);
     props = props.props
     const [username, setUsername] = useState('');
@@ -37,6 +39,7 @@ function LoginForm(props) {
                 if(data.valid){
                     document.cookie = `token=${data.token};path=/`;
                     props.setLogState(true);
+                    setAuthToken(data.token)
                 }
                 // Store token in cookies
                 

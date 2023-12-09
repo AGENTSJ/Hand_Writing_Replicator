@@ -94,6 +94,29 @@ def A4out():
             
     except Exception as e:      
         return jsonify({"error by A4 out":str(e)}),500
+    
+
+@image_bp.route('/getstatus',methods=['GET'])
+
+def getstatus():
+    try:
+        valid = auth()
+        if valid:
+           
+
+            result = alphabetstore.Check_Store(user_id=request.user['user_id'],store_Collection=Store_collection)
+
+            if result:
+
+                missing_Alpha = result['missing_alph']
+                return jsonify({"new_status":result['new_status'],"missing_alph":missing_Alpha}),200 
+            else:
+                return jsonify({"message":"no store found"}),404
+        else:
+            return jsonify({"message":"unauthorised"}),404
+    except Exception as e:
+        return jsonify({"error by getstatus":str(e)}),500    
+
    
 
 

@@ -1,5 +1,6 @@
 import sys
 import jwt
+from bson import ObjectId
 sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\models')
 sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\middleware')
 from flask import Blueprint,Flask, request, jsonify
@@ -92,3 +93,22 @@ def validity():
         
     except Exception as e:
         return jsonify({"error from profile":str(e),"valid":False}),500
+    
+@user_bp.route('/profile',methods=['GET'])
+
+def profile():
+    try:
+        valid = auth()
+        if valid:
+            
+            data = request.user
+            # print(data)
+            user = User_collection.find_one({"_id":ObjectId(data['user_id'])})
+            # print(user)
+
+            return jsonify({"username":user['username'],'email':user['email']})
+        else:
+            return jsonify({"valid":False}),500
+    except Exception as e:
+        return jsonify({"error from profile":str(e),"valid":False}),500
+    

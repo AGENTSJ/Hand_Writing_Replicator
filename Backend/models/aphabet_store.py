@@ -87,3 +87,32 @@ class alphabetstore:
                 return {"message":"success","alph_arr":Make_usable(store['aplh_arr']),"dimen_arr":store['dimen_arr']}
         except Exception as e:
             return jsonify({"error from get_from_store":str(e)}),500
+    
+    def Check_Store(user_id,store_Collection):
+        """""
+        returns new_status and missing_alph
+        new_status is True missing_alph is full(26)
+
+        """""
+        try:
+            new_status = True
+
+            store = store_Collection.find_one({"user_id":user_id})
+            if store is None:
+                return "invalid"
+            else:
+                alph_arr = store['aplh_arr']
+                dimn_arr = store['dimen_arr']
+                missing_alph = []
+
+                for i in range(len(alph_arr)):
+                    if len(alph_arr[i])==0:
+                        missing_alph.append(chr(i+65))
+
+                if len(missing_alph)!=0:
+                    new_status = False
+                    
+                return {"new_status":new_status,"missing_alph":missing_alph}
+
+        except Exception as e:
+            return jsonify({"error from get_from_store":str(e)}),500

@@ -8,13 +8,18 @@ import '../styles/dash.css'
 const Dash = () => {
     const {authToken,setAuthToken} = useContext(AuthContext)
     const uploadbtn = useRef(null)
- 
+    const [missing,setmissing] = useState([])
+
   const inputRef = useRef(null)
   const contref = useRef(null)
-  
+  const usrname = useRef(null)
+  const email = useRef(null)
+
   useEffect (() => {
    eventListeners()
-    fetchUser()
+   fetchUser()
+   fetchMissing()
+
     }, [])
 
   const eventListeners = ()=>{
@@ -41,6 +46,7 @@ const Dash = () => {
       alert('not an image')
     }else{
       uploadbtn.current.classList.remove('disabled')
+      uploadbtn.current.classList.add('enabled')
       convertToBase64(file)
     }
     
@@ -88,21 +94,72 @@ const Dash = () => {
 
     })
   }
-  const fetchUser = async ()=>{}
+
+  const fetchUser = async ()=>{
+    let response = await fetch("http://127.0.0.1:5000/user/profile",{
+      metheod:"GET",
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':authToken.split('=')[1]
+      }
+    })
+    let result = await response.json()
+    usrname.current.value = result.username
+    email.current.value = result.email
+
+  }
+
+  const fetchMissing = async ()=>{
+    let response = await fetch("http://127.0.0.1:5000/image/getstatus",{
+      metheod:"GET",
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':authToken.split('=')[1]
+      }
+
+    })
+    let result = await response.json()
+    const missing_alph = result.missing_alph
+    setmissing(missing_alph)
+  }
+
+  function Miss(props){
+    return(
+      
+      <div className="missing">
+        Uh oh i think there are some missing letters
+        <br/>
+        {props.alph.map((item)=>{ item=item+" , ";return(item)})}
+
+      </div>
+    )
+  }
   return (
     <>
     <div className="infocont">
         <label>username</label>
-        <input type="text" id="username" className='disabledIP IP'/>
+        <input type="text" id="username" className='disabledIP IP' ref={usrname}/>
         <label >email</label>
-        <input type="email" id="email" className='disabledIP IP'/>
-        <button className='updatebtn'>update</button>
+        <input type="email" id="email" className='disabledIP IP' ref={email}/>
     </div>
+    {
+      missing.length>0?<Miss alph={missing}/>:<div></div>
+    }
     <div className="dragndrop" ref={contref}  >
-      <label htmlFor="inputfile"></label>
-      <input type="file" id="fileInput" ref={inputRef} accept="image/*"/>
-      <button className ="disabled" ref={uploadbtn} onClick={uploadImg}>Upload</button>
+      <br />
+
+      <div className="assert">
+      Add your handwrittings here
+      </div>
+      <br />
+      <input type="file" className='choosefile' ref={inputRef} accept="image/*"/>
+      
+
+      <button className ="disabled uploadbtn" ref={uploadbtn} onClick={uploadImg}>Upload</button>
+
     </div>
+    
+    
     </>
   )
 }

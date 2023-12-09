@@ -8,7 +8,7 @@ import Dash from './Dash';
 const Utility = () => {
   
   const {authToken,setAuthToken} = useContext(AuthContext)
-  const [page,setpage] = useState("display")
+  const [page,setpage] = useState("dash")
   const disp = useRef(null)
   const dash = useRef(null)
 
@@ -22,6 +22,8 @@ const Utility = () => {
     }
   },[page])
 
+
+  
   return (
     <>
     
