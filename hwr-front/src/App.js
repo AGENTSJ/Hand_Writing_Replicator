@@ -47,6 +47,8 @@ function App() {
       <div className="App">
         {logState?<Utility></Utility>:<Login props={{logState,setLogState}}></Login>}
       </div>
+      
+
     </AuthContext.Provider>
    
   );

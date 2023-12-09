@@ -1,0 +1,28 @@
+{
+  "name": "hand_writing_replicator",
+  "version": "1.0.0",
+  "description": "the project aims to detect handwritten images from user input containing their handwriting in capital english letters and store it into database",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd \"D:/ACtive/Hand_Writing_Replicator/hwr-front\" && npm start",
+    "backend": "cd \"D:/ACtive/Hand_Writing_Replicator/Backend/components\" && python index.py",
+    "start": "npm-run-all -p frontend backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator.git"
+  },
+  "author": "Abhijith SJ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/issues"
+  },
+  "homepage": "https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator#readme",
+  "dependencies": {
+    "react-router-dom": "^6.20.1"
+  }
+}
