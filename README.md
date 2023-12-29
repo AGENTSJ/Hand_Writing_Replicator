@@ -17,7 +17,7 @@ pip install Flask-PyMongo
 conda install bcrypt
 conda install tensorflow
 ```
-## Run mongod server 
+## Run mongoDB server 
 ```bash
 #Linux
 sudo systemctl start mongod
