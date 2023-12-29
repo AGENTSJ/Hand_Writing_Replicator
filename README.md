@@ -22,7 +22,8 @@ conda install tensorflow
 ```bash
 #Linux
 sudo systemctl start mongod
-
+```
+```bash
 #windows
 mongod
 ```
