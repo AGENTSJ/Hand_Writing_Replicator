@@ -7,9 +7,10 @@ when the user need to convert any english paragraph ,the use can give the paragr
 ## Display :
 
 <img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/c13f2043-d66c-4306-8d05-623667868fc5" height="300px"/>
+
 ## Login page :
 
-![Screenshot (49)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/3c3aae1b-3c02-44ae-982f-fbe0853c3edb)
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/3c3aae1b-3c02-44ae-982f-fbe0853c3edb" height="300px">
 
 ## Dash board : 
 
