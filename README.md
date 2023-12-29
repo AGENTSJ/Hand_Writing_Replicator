@@ -29,7 +29,7 @@ mongod
 ## Run Server
 ```bash
 conda activate hwr
-cd ./Capital_Hand_Writing_Replicator/Backend/components
+cd /Backend/components
 python3 index.py
 ```
 ### Run Frontend
