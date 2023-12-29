@@ -43,13 +43,13 @@ npm run dev
 
 ## Display :
 
-<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/c13f2043-d66c-4306-8d05-623667868fc5" height="300px"/>
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/62adc64e-95b0-42a6-b2f9-324a3ddf8b40" height="300px"/>
 
 ## Login page :
 
-<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/3c3aae1b-3c02-44ae-982f-fbe0853c3edb" height="300px">
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/c02332ce-21d6-4dba-aaf6-a500bbdb6b0d" height="300px">
 
 ## Dash board : 
 
-<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/5ffb047f-4ee5-4e13-b7db-0996d42c4b69" height="300px">
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/3678ed28-0cc6-425c-bd75-c751a106dd0f" height="300px">
 
