@@ -47,7 +47,7 @@ npm run dev
 
 ## Login page :
 
-<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/c02332ce-21d6-4dba-aaf6-a500bbdb6b0d" height="300px">
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/98f0e3dd-59e9-4cfd-b8b8-fc48ceacba00" height="300px">
 
 ## Dash board : 
 
