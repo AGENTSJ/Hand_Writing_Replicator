@@ -28,6 +28,7 @@ mongod
 ```
 ## Run Server
 ```bash
+# enter into project dir Capital_Hand_Writing_Replicator
 conda activate hwr
 cd Backend/components
 python3 index.py
@@ -35,7 +36,8 @@ python3 index.py
 ### Run Frontend
 
 ```bash
-cd ./Capital_Hand_Writing_Replicator/Hwr-Front
+# enter into project dir Capital_Hand_Writing_Replicator
+cd Hwr-Front
 npm install
 npm run dev
 ```
