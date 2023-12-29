@@ -29,7 +29,7 @@ mongod
 ## Run Server
 ```bash
 conda activate hwr
-cd /Backend/components
+cd Backend/components
 python3 index.py
 ```
 ### Run Frontend
