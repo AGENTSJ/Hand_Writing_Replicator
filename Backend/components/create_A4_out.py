@@ -1,5 +1,6 @@
 import sys
-sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\models')
+
+sys.path.append('../../MachineLearning/Models')
 from aphabet_store import alphabetstore 
 from flask import jsonify
 from flask import jsonify,request,Blueprint,Flask

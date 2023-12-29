@@ -1,0 +1,45 @@
+.highlight {
+    background-color: red;
+}
+.disabled  {
+    background-color: #ccc; /* Change the background color to visually indicate it's disabled */
+    color: #666; /* Adjust text color for better readability */
+    cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+    pointer-events: none; /* Disable pointer events to prevent interaction */
+  }
+
+.nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(154, 154, 235);
+    height: fit-content;
+    /* padding: 20px; */
+    height: 60px;
+}
+.nav a{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    text-decoration: none;
+    color: black;
+}
+
+.routes {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: 100%;
+    background-color: rgb(129, 129, 235);
+    width: 50%;
+    transition: background-color font-size 0.3s ease; /* Add transition property */
+}
+
+.routes:hover {
+    background-color: rgb(112, 112, 243);
+    
+}
+.current{
+    background-color: rgb(112, 112, 243);
+}

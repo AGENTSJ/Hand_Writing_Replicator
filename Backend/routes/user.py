@@ -1,8 +1,11 @@
 import sys
 import jwt
 from bson import ObjectId
-sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\models')
-sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\middleware')
+
+sys.path.append(r'../models')
+sys.path.append(r'../routes')
+sys.path.append(r'../middleware')
+
 from flask import Blueprint,Flask, request, jsonify
 from flask_pymongo import PyMongo
 from User_model import User

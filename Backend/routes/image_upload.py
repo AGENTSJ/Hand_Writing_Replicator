@@ -3,9 +3,10 @@ import numpy as np
 import base64
 import cv2
 import sys
-sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\models')
-sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\middleware')
-sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\components')
+sys.path.append(r'../../MachineLearning/Models')
+# sys.path.append(r'/home/abhijith/Desktop/Active/Capital_Hand_Writing_Replicator/Backend/middleware')
+sys.path.append(r'../middleware')
+sys.path.append(r'../components')
 
 from aphabet_store import alphabetstore
 from flask_pymongo import PyMongo
@@ -106,15 +107,16 @@ def getstatus():
 
             result = alphabetstore.Check_Store(user_id=request.user['user_id'],store_Collection=Store_collection)
 
-            if result:
+            if result["flag"]==True:
 
                 missing_Alpha = result['missing_alph']
-                return jsonify({"new_status":result['new_status'],"missing_alph":missing_Alpha}),200 
-            else:
-                return jsonify({"message":"no store found"}),404
+                pack = {"new_status":result["new_status"],"missing_alph":missing_Alpha},200
+                # print(pack)
+                return jsonify(pack),200 
         else:
             return jsonify({"message":"unauthorised"}),404
     except Exception as e:
+        # print(e)
         return jsonify({"error by getstatus":str(e)}),500    
 
    

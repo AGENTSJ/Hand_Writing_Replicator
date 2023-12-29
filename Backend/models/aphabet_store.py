@@ -4,8 +4,8 @@ import cv2
 import numpy as np
 import base64
 import sys
-sys.path.append(r"D:\ACtive\Hand_Writing_Replicator\Backend\components")
 
+sys.path.append(r"../components")
 
 
             
@@ -98,12 +98,17 @@ class alphabetstore:
             new_status = True
 
             store = store_Collection.find_one({"user_id":user_id})
+            missing_alph = []
             if store is None:
-                return "invalid"
+                
+                for ascii_value in range(ord('A'), ord('Z') + 1):
+                    missing_alph.append(chr(ascii_value))
+                
+                return {"new_status":new_status,"missing_alph":missing_alph,"flag":True}
             else:
                 alph_arr = store['aplh_arr']
                 dimn_arr = store['dimen_arr']
-                missing_alph = []
+                
 
                 for i in range(len(alph_arr)):
                     if len(alph_arr[i])==0:
@@ -112,7 +117,7 @@ class alphabetstore:
                 if len(missing_alph)!=0:
                     new_status = False
                     
-                return {"new_status":new_status,"missing_alph":missing_alph}
+                return {"new_status":new_status,"missing_alph":missing_alph,"flag":True}
 
         except Exception as e:
-            return jsonify({"error from get_from_store":str(e)}),500
+            return jsonify({"error from get_from_store":str(e),"flag":True}),500

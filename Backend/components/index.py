@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 import sys
-sys.path.append(r'D:\ACtive\Hand_Writing_Replicator\Backend\routes')
+sys.path.append('../routes')
 app = Flask(__name__)
 
 CORS(app)

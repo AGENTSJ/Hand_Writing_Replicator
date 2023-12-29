@@ -154,8 +154,8 @@ def Detect_and_Store(connected,contours,inputBINARY,binary_image):
 
     alphabets = [chr(y) for y in range(ord("A"),ord("Z")+1) ]
 
-    model = tf.keras.models.load_model(r"D:\ACtive\Hand_Writing_Replicator\MachineLearning\Models\CAP_9997.h5")
-
+    model = tf.keras.models.load_model("../../MachineLearning/Models/CAP_9997.h5")
+    
     Similar_contour_cluster = []
     similar_contour_dimen = []
 

@@ -1,0 +1,11 @@
+conda create --name hwr
+conda activate hwr
+conda install flask-cors
+conda install flask
+conda install python=3.10
+conda install opencv
+conda install pyjwt
+conda install pymongo
+pip install Flask-PyMongo
+conda install bcrypt
+conda install tensorflow
