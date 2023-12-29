@@ -7,7 +7,9 @@
     cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
     pointer-events: none; /* Disable pointer events to prevent interaction */
   }
-
+a{
+    background-color: transparent;
+}
 .nav{
     display: flex;
     justify-content: space-around;

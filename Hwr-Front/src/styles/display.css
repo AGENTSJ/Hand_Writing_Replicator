@@ -1,37 +1,46 @@
 .dcont{
-    padding: 20px;
-    background-color: rgb(250, 241, 199);
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 .image{
-    /* aspect-ratio: 1/1; */
+
     height: auto;
     width: 100%;
     max-width: 500px;
+    border: 1px solid black;
     
-}
-.desc{
-    width: 100%;
-    /* border-radius: 5px; */
-    margin-top: 10px;
-    padding: 20px;
 }
 .gtpicbtn{
+
     cursor: pointer;
-    margin-top: 20px;
+    margin-bottom: 20px;
     border: none;
-    background-color:rgb(154, 154, 235);;
-    width: 80px;
+    background-color:#90EE90;
+    width: 30%;
     height: 40px;
+    transition: 0.3s;
+    border-radius: 2px;
     
 }
+.gtpicbtn:active{
+    
+    transform: translateY(5px);
+}
 .btncont{
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    width: 100vh;
+    width: 100%;
+}
+.desc{
+    width: 97%;
+    /* margin-left: 50px;
+    margin-right: 50px; */
+    margin-top: 10px;
+    padding: 10px;
+    color: black;
+    background-color: rgb(255, 255, 255);
 }

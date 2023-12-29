@@ -2,9 +2,7 @@
 import  { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../context/authcontext';
-import "../styles/dash.css"
-import "../styles/display.css"
-import "../styles/utility.css"
+import "../styles/login.css"
 
 function LoginForm(props) {
     const {setAuthToken} = useContext(AuthContext)
@@ -66,9 +64,11 @@ function LoginForm(props) {
             body: JSON.stringify({ "username":username, "password":password ,"email":email}),
         })
             .then((response) => response.json())
-            .then((data) => {
+            .then(() => {
                 // Handle server response
-                console.log(data);
+                // console.log(data);
+                alert("User created Login")
+                window.location.reload()
                
             })
             .catch((error) => {
@@ -77,24 +77,31 @@ function LoginForm(props) {
     };
 
     return (
-        <form>
-            <label>
+        
+        <form className='frm'>
+            <label className='lbl'>
                 Username:
+                <br/>
                 <input type="text" value={username} onChange={handleUsernameChange} />
             </label>
             <br />
-            <label>
-                email:
+            <label className='lbl'>
+                email
+                <br/>
                 <input type="email" value={email} onChange={handleEmailChange} />
             </label>
             <br />
-            <label>
+            <label className='lbl'>
                 Password:
+                <br/>
                 <input type="password" value={password} onChange={handlePasswordChange} />
             </label>
             <br />
-            <button onClick={loginUser}>Login</button>
-            <button onClick={createUser}>Sign up</button>
+            <div className="logbtncont">
+
+                <button className='logbtn' onClick={loginUser}>Login</button>
+                <button className='logbtn' onClick={createUser}>Sign up</button>
+            </div>
         </form>
     );
 }
