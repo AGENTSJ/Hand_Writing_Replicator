@@ -14,7 +14,7 @@ when the user need to convert any english paragraph ,the use can give the paragr
 
 ## Dash board : 
 
-![Screenshot (48)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/5ffb047f-4ee5-4e13-b7db-0996d42c4b69)
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/5ffb047f-4ee5-4e13-b7db-0996d42c4b69" height="300px">
 
 ## Install requirements
 
