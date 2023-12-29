@@ -10,7 +10,7 @@ here is a simpilifies overview of the working of the APP
 
 Display :
 
-![Screenshot (47)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/c13f2043-d66c-4306-8d05-623667868fc5)
+![Screenshot (47)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/62adc64e-95b0-42a6-b2f9-324a3ddf8b40)
 
 Login page :
 
@@ -18,5 +18,5 @@ Login page :
 
 Dash board : 
 
-![Screenshot (48)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/5ffb047f-4ee5-4e13-b7db-0996d42c4b69)
+![Screenshot (48)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/3678ed28-0cc6-425c-bd75-c751a106dd0f)
 
