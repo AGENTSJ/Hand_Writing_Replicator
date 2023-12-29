@@ -77,32 +77,38 @@ function LoginForm(props) {
     };
 
     return (
-        
-        <form className='frm'>
-            <label className='lbl'>
-                Username:
-                <br/>
-                <input type="text" value={username} onChange={handleUsernameChange} />
-            </label>
-            <br />
-            <label className='lbl'>
-                email
-                <br/>
-                <input type="email" value={email} onChange={handleEmailChange} />
-            </label>
-            <br />
-            <label className='lbl'>
-                Password:
-                <br/>
-                <input type="password" value={password} onChange={handlePasswordChange} />
-            </label>
-            <br />
-            <div className="logbtncont">
-
-                <button className='logbtn' onClick={loginUser}>Login</button>
-                <button className='logbtn' onClick={createUser}>Sign up</button>
+        <div className='logincont'>
+            <div className="wlcmcont">
+                <p>
+                    Welcome to Hand writing replicator
+                </p>
             </div>
-        </form>
+            <form className='frm'>
+                <label className='lbl'>
+                    Username:
+                    <br/>
+                    <input type="text" value={username} onChange={handleUsernameChange} />
+                </label>
+                <br />
+                <label className='lbl'>
+                    email
+                    <br/>
+                    <input type="email" value={email} onChange={handleEmailChange} />
+                </label>
+                <br />
+                <label className='lbl'>
+                    Password:
+                    <br/>
+                    <input type="password" value={password} onChange={handlePasswordChange} />
+                </label>
+                <br />
+                <div className="logbtncont">
+
+                    <button className='logbtn' onClick={loginUser}>Login</button>
+                    <button className='logbtn' onClick={createUser}>Sign up</button>
+                </div>
+            </form>
+        </div>
     );
 }
 
