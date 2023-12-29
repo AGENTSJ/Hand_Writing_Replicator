@@ -1,22 +1,55 @@
 # Capital_Hand_Writing_Replicator
 
-the project aims to detect handwritten images from user iput containing their handwriting in capital english letters and store it into database
+The project aims to recognize handwritten images containing capital English letters from user input, followed by storing them in a dedicated database. Upon the user's request for the conversion of an English paragraph, the application seamlessly transforms the input string into the user's distinctive handwriting. This ensures a personalized and refined experience for users seeking a unique representation of their text in a handwritten format.
 
-when the user need to convert any english paragraph ,the use can give the paragraph as input string and the app will convert into their own handwritting
+## Install requirements
 
-here is a simpilifies overview of the working of the APP
+```bash
+conda create --name hwr
+conda activate hwr
+conda install flask-cors
+conda install flask
+conda install python=3.10
+conda install opencv
+conda install pyjwt
+conda install pymongo
+pip install Flask-PyMongo
+conda install bcrypt
+conda install tensorflow
+```
+## Run mongoDB server 
+```bash
+#Linux
+sudo systemctl start mongod
+```
+```bash
+#windows
+mongod
+```
+## Run Server
+```bash
+conda activate hwr
+cd /Backend/components
+python3 index.py
+```
+### Run Frontend
 
-![digram drawio](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/841c6aa1-f0d7-4125-bc81-e8b0cd608cdf)
+```bash
+cd ./Capital_Hand_Writing_Replicator/Hwr-Front
+npm install
+npm run dev
+```
+# preview 
 
-Display :
+## Display :
 
-![Screenshot (47)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/62adc64e-95b0-42a6-b2f9-324a3ddf8b40)
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/c13f2043-d66c-4306-8d05-623667868fc5" height="300px"/>
 
-Login page :
+## Login page :
 
-![Screenshot (49)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/3c3aae1b-3c02-44ae-982f-fbe0853c3edb)
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/3c3aae1b-3c02-44ae-982f-fbe0853c3edb" height="300px">
 
-Dash board : 
+## Dash board : 
 
-![Screenshot (48)](https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/3678ed28-0cc6-425c-bd75-c751a106dd0f)
+<img src="https://github.com/AGENTSJ/Capital_Hand_Writing_Replicator/assets/109428699/5ffb047f-4ee5-4e13-b7db-0996d42c4b69" height="300px">
 
