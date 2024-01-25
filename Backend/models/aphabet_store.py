@@ -6,8 +6,6 @@ import base64
 import sys
 
 sys.path.append(r"../components")
-
-
             
 def Make_Compatible_toDB(alph_arr):
     """""
@@ -86,6 +84,7 @@ class alphabetstore:
             else:
                 return {"message":"success","alph_arr":Make_usable(store['aplh_arr']),"dimen_arr":store['dimen_arr']}
         except Exception as e:
+            print("1500")
             return jsonify({"error from get_from_store":str(e)}),500
     
     def Check_Store(user_id,store_Collection):
@@ -96,13 +95,19 @@ class alphabetstore:
         """""
         try:
             new_status = True
-
+            asciivals = [i for i  in range(ord('A'), ord('Z') + 1)]+[i for i  in range(ord('a'), ord('z') + 1)]+[str(i) for i in range(10)]
             store = store_Collection.find_one({"user_id":user_id})
             missing_alph = []
             if store is None:
+
                 
-                for ascii_value in range(ord('A'), ord('Z') + 1):
-                    missing_alph.append(chr(ascii_value))
+              
+                for i in range(62):
+                    if i>=52 :
+                        missing_alph.append(asciivals[i])
+                    else:
+                       
+                        missing_alph.append(chr(asciivals[i]))
                 
                 return {"new_status":new_status,"missing_alph":missing_alph,"flag":True}
             else:
@@ -111,13 +116,16 @@ class alphabetstore:
                 
 
                 for i in range(len(alph_arr)):
-                    if len(alph_arr[i])==0:
-                        missing_alph.append(chr(i+65))
+                    if i>=52 and len(alph_arr[i])==0:
+                        missing_alph.append(asciivals[i])
+                    elif len(alph_arr[i])==0:
+                        missing_alph.append(chr(asciivals[i]))
 
                 if len(missing_alph)!=0:
                     new_status = False
-                    
+                
                 return {"new_status":new_status,"missing_alph":missing_alph,"flag":True}
 
         except Exception as e:
+            print("2500",e)
             return jsonify({"error from get_from_store":str(e),"flag":True}),500

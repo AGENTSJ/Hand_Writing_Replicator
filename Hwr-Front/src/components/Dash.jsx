@@ -5,70 +5,48 @@ import { useContext } from 'react'
 import { AuthContext } from '../context/authcontext';
 import '../styles/dash.css'
 
-const Dash = () => {
-    const {authToken} = useContext(AuthContext)
-    const uploadbtn = useRef(null)
-    const [missing,setmissing] = useState([])
-
-  const inputRef = useRef(null)
-  const contref = useRef(null)
-  const usrname = useRef(null)
-  const email = useRef(null)
-
-  useEffect (() => {
-    // console.log(authToken);
-   eventListeners()
-   fetchUser()
-   fetchMissing()
-
-    }, [])
-
-  const eventListeners = ()=>{
-    contref.current.addEventListener('dragover', handledragover)
-    contref.current.addEventListener('drop', handledrop)
-    contref.current.addEventListener('dragleave', handledragleave)
-
-    inputRef.current.addEventListener('change', handlechange)
-  }
-  const handledragover = (e) => {
-    e.preventDefault()
-    contref.current.classList.add('highlight')
-  }
-  const handledrop =()=>{
-    contref.current.classList.remove('highlight')
-  }
-  const handledragleave =()=>{  
-    contref.current.classList.remove('highlight')
-  }
-  const handlechange = async (e) => { 
+function Miss(props){
     
-    let file = e.target.files[0]
-    if (file.type.match('image.*') == null) {
-      alert('not an image')
-    }else{
-      uploadbtn.current.classList.remove('disabled')
-      uploadbtn.current.classList.add('enabled')
-      convertToBase64(file)
-    }
+  let text = "Uh oh i think we are missing some missing characters upload your handwriting"
+  let text2 =" Note: Follow instructions in guide"
+  /* eslint-disable react/prop-types */
+  if(props.alph.length===62){
+    text = "Try uploading your handwriting bellow click on guide for more info"
     
+  }else if(props.alph.length==0){
+    text = "We have all the needed characters. But adding more will give you variety in your creation"
   }
-  const uploadImg = async ()=>{
-
-    let file = inputRef.current.files[0]
-    let base64str = await convertToBase64(file)
+  return(
     
+    <div className="missing">
+      <p>{text}</p>
+      
+      {props.alph.length===62?"":<p>{props.alph.join(' , ')}</p>}
+      <p>{text2}</p>
 
-    let response = await fetch('http://127.0.0.1:5000/image/upload',{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-          'Authorization':authToken.split('=')[1]
-        },
-        body:JSON.stringify({'image':base64str})
-      })
-      let data = await response.json()
-      console.log(data);
-  }
+    </div>
+  )
+}
+function Loading(){
+
+  return(
+    <>
+    <div className="loader"></div>
+    </>
+  )
+}
+function UploadButton(props){
+
+  {/* eslint-disable react/prop-types */}
+  const {authToken} = useContext(AuthContext)
+  const[waiting,setwaiting]= useState(false)
+  const buttonref = useRef(null)
+  const inputref = useRef(null)
+  const [para,setpara] = useState("Click to select an image")
+  useEffect(()=>{
+    inputref.current.addEventListener('change', handlebuttonchange)
+  },[])
+
   const convertToBase64 = (file) => {
     
     return new Promise((resolve,reject)=>{
@@ -95,6 +73,71 @@ const Dash = () => {
 
     })
   }
+  const handlebuttonchange = async (e) => { 
+    
+    let file = e.target.files[0]
+    if (file.type.match('image.*') == null) {
+      alert('not an image')
+    }else{
+      buttonref.current.classList.remove('disabled')
+      buttonref.current.classList.add('enabled')
+      convertToBase64(file)
+    }
+    setpara(file.name)
+    // let lbl= inputref.current.parentNode
+    // lbl.innerText = file.name
+
+    
+  }
+  const uploadImg = async (STATE,inpref)=>{
+    setwaiting(true)
+    let file = inpref.current.files[0]
+    let base64str = await convertToBase64(file)
+    
+
+    let response = await fetch('http://127.0.0.1:5000/image/upload',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization':authToken.split('=')[1]
+        },
+        body:JSON.stringify({'image':base64str,'STATE':STATE})
+      })
+      let data = await response.json()
+      console.log(data);
+      setwaiting(false)
+      inputref.current.value=null
+  }
+  let text = ""
+  
+  props.STATE===0?text = "Capital Letter":props.STATE===1?text="Small letter":props.STATE===2?text="Digits":""
+  
+  return(
+    <>
+      <label className='choosefile-label'>
+        {para}
+        <input type="file" className='choosefile' ref={inputref} accept="image/*"/>
+      </label>
+      {waiting?<Loading/>:<button className ="disabled uploadbtn" ref={buttonref} onClick={()=>uploadImg(props.STATE,inputref)}>Upload {text}</button>}
+    </>
+  )
+}
+
+const Dash = () => {
+  const {authToken} = useContext(AuthContext)
+  
+  const [missing,setmissing] = useState([])
+
+  const contref = useRef(null)
+  const usrname = useRef(null)
+  const email = useRef(null)
+
+  useEffect (() => {
+   fetchUser()
+   fetchMissing()
+    }, [])
+
+
 
   const fetchUser = async ()=>{
     
@@ -110,7 +153,6 @@ const Dash = () => {
     email.current.value = result.email
 
   }
-
   const fetchMissing = async ()=>{
     let response = await fetch("http://127.0.0.1:5000/image/getstatus",{
       metheod:"GET",
@@ -121,53 +163,55 @@ const Dash = () => {
 
     })
     let result = await response.json()
+    // console.log(result)
+    // alert(result[0].missing_alph)
     const missing_alph = result[0].missing_alph
-    // console.log(result);
     setmissing(missing_alph)
-  }
-
-  function Miss(props){
-    return(
-      
-      <div className="missing">
-        Uh oh i think there are some missing letters
-        <br/>
-          {/* eslint-disable-next-line react/prop-types */}
-        {props.alph.map((item)=>{ item=item+" , ";return(item)})}
-
-      </div>
-    )
   }
   function logout(){
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.reload()
   }
+  
   return (
     <>
-    <div className="infocont">
-        <label>username</label>
-        <input type="text" id="username" className='disabledIP IP' ref={usrname}/>
-        <label >email</label>
-        <input type="email" id="email" className='disabledIP IP' ref={email}/>
-    </div>
-    {
-      missing.length>0?<Miss alph={missing}/>:<div></div>
-    }
-    <div className="dragndrop" ref={contref}  >
-      <br />
+    <div className="dashdiv backgroundDiv">
+      <div className="dcont">
 
-      <div className="assert">
-      Add your handwrittings here
+        <div className="HWRlegend"></div>
+
+        <div className="infocont">
+            <div className="subinfo">
+              <p>User name</p>
+              <input type="text" id="username" className='disabledIP IP' ref={usrname}/>
+            </div>
+            <div className="subinfo">
+              <p >email</p>
+              <input type="email" id="email" className='disabledIP IP' ref={email}/>
+            </div>
+            <button onClick={logout} className='lgbtn'>Log Out</button>
+        </div>
+        
+        <fieldset>
+          <legend><label>Upload</label></legend>
+          <Miss alph={missing}/>
+          
+          <div className="dragndrop" ref={contref}  >
+
+            <div className="assert">
+              Add your handwrittings here
+            </div>
+
+            <UploadButton  STATE={0}/>
+            <UploadButton  STATE={1}/>
+            <UploadButton  STATE={2}/>
+           
+            </div>
+        </fieldset>
+        
       </div>
-      <br />
-      <input type="file" className='choosefile' ref={inputRef} accept="image/*"/>
-      
-
-      <button className ="disabled uploadbtn" ref={uploadbtn} onClick={uploadImg}>Upload</button>
-      <button onClick={logout} className='lgbtn'>Log Out</button>
     </div>
-    
-    
+    {/* <Loading/> */}
     </>
   )
 }

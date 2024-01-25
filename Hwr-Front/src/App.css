@@ -1,5 +1,17 @@
-*{
-  background-color: rgb(234, 227, 255);
+:root{
+  --bg:url("./bgm.jpeg");
+  --pallete-3: #e9ecef;
+  --pallete-2: #333333;
+  --pallete-1:white;
+}
+.backgroundDiv {
+  height: 100vh;
+  padding: 1em;
+  background-image: url('bgm.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
 }
 .App {
   text-align: center;

@@ -28,6 +28,10 @@ def convert_base64(nparr):
     base64_image = base64.b64encode(image_bytes.tobytes()).decode('utf-8')
     return base64_image
 
+def hex_to_bgr(hex_color):
+    hex_color = hex_color.lstrip('#')
+    rgb = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+    return rgb[::-1]
 # routes
 
 
@@ -50,7 +54,8 @@ def upload():
             
             nparr = np.frombuffer(base64.b64decode(base64_image_data), np.uint8)
             image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-            ALP_arr,Dimn_arr,missing_Alpha =Main_Pipeline(image)
+            
+            ALP_arr,Dimn_arr,missing_Alpha =Main_Pipeline(image,STATE = int(data['STATE']))
             user = request.user
 
             store = alphabetstore(user_id=user['user_id'],aplh_arr=ALP_arr,dimen_arr=Dimn_arr)
@@ -64,6 +69,7 @@ def upload():
             return jsonify({"message":"unauthorised"}),404
 
     except Exception as e:
+        # print(e)
         return jsonify({"error by upload image":str(e)}),500
         
 
@@ -76,9 +82,12 @@ def A4out():
     try:
         valid = auth()
         if valid:
+            
             data = request.get_json()
-
-            result = create_A4_out(request.user['user_id'],data['inputstring'])
+            filtr = hex_to_bgr(data["Filter"])
+            ink = hex_to_bgr(data["Ink"])
+            # print(filtr)
+            result = create_A4_out(request.user['user_id'],data['inputstring'],font_size =float(data['font_size']),Filter=filtr,Ink = ink)
 
             if result['flag']:
 
@@ -89,11 +98,12 @@ def A4out():
                     # display(result['a4'])
                     return jsonify({"a4":convert_base64(result['a4']),'space':False}),200
             else:
+                print(e)
                 return jsonify({"message":"error from A4 out"}),404
 
            
             
-    except Exception as e:      
+    except Exception as e:    
         return jsonify({"error by A4 out":str(e)}),500
     
 
@@ -106,17 +116,16 @@ def getstatus():
            
 
             result = alphabetstore.Check_Store(user_id=request.user['user_id'],store_Collection=Store_collection)
-
             if result["flag"]==True:
 
                 missing_Alpha = result['missing_alph']
                 pack = {"new_status":result["new_status"],"missing_alph":missing_Alpha},200
-                # print(pack)
+                
                 return jsonify(pack),200 
         else:
             return jsonify({"message":"unauthorised"}),404
     except Exception as e:
-        # print(e)
+        print(e)
         return jsonify({"error by getstatus":str(e)}),500    
 
    

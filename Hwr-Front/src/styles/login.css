@@ -1,23 +1,41 @@
+.backgroundDiv {
+    height: 100%;
+    padding: 1em;
+    background-image: url('bgm.jpeg');
+    /* background-image: var(--bg); */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+  }
 .frm {
-
+    
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    width: 27%;
+    min-width: 200px;
     margin: 0 auto;
     padding: 20px;
-    border-radius: 5px;
-    background-color: rgb(165, 165, 255);
+    border-radius: 10px;
+    background-color: white;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 }
 .wlcmcont{
     margin-bottom: 20px;
+    margin-top: 50px;
 }
 .wlcmcont p{
-    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: xx-large;
 }
 .logincont{
+    padding:20px;
+    background-image:var(--bg);
+    background-position: center;
+    background-size: cover;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -28,14 +46,18 @@
     background-color: transparent;
     width: 100%;
     margin-bottom: 10px;
+    margin-left: auto;
 }
 .lbl{
+    font-size: large;
+    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .lbl input {
+    margin-top: 10px;
     width: 80%;
     padding: 10px;
     border-radius: 5px;
@@ -45,20 +67,22 @@
 .logbtncont {
     background-color: transparent;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
 }
 
 .logbtn {
+    font-size: large;
+    color: black;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
-    background-color: #90EE90;
+    background-color: #807f7f;
    
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .logbtn:hover {
-    background-color: #3b6e3b;
+    background-color: rgb(193, 188, 188);
 }

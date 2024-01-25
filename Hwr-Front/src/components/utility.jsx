@@ -9,14 +9,10 @@ const Utility = () => {
   const dash = useRef(null)
   
   function routeDisp(){
-    dash.current.parentElement.style.backgroundColor="rgb(129, 129, 235)"
     disp.current.click()
-    disp.current.parentElement.style.backgroundColor="rgb(112, 112, 243)"
   }
   function routeDash(){
-    disp.current.parentElement.style.backgroundColor="rgb(129, 129, 235)"
     dash.current.click()
-    dash.current.parentElement.style.backgroundColor="rgb(112, 112, 243)"
   }
   return (
     <>
