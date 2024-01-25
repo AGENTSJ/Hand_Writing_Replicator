@@ -1,26 +1,45 @@
-.dcont{
+.backgroundDiv{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background-image: var(--bg);
+    /* position: relative; */
+   
+}
+.cont{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    /* position: relative; */
 }
 .image{
-
+    margin-top: 40px;
+    border-radius: 5px;
     height: auto;
     width: 100%;
     max-width: 500px;
     border: 1px solid black;
+   
     
 }
 .gtpicbtn{
-
+    
+    font-size: larger;
+    width: 80%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: fit-content;
+    color: aliceblue;
+    /* padding: 20px; */
     cursor: pointer;
     margin-bottom: 20px;
     border: none;
-    background-color:#90EE90;
-    width: 30%;
-    height: 40px;
+    background-color:var(--pallete-2);
     transition: 0.3s;
-    border-radius: 2px;
+    border-radius: 5px;
     
 }
 .gtpicbtn:active{
@@ -28,19 +47,54 @@
     transform: translateY(5px);
 }
 .btncont{
+    padding: 20px;
+    
+    width: 20%;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: var(--pallete-3);
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 .desc{
+    border-radius: 5px;
     width: 97%;
-    /* margin-left: 50px;
-    margin-right: 50px; */
+    /* margin-bottom: 100vh; */
     margin-top: 10px;
     padding: 10px;
     color: black;
     background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+}
+.finecont{
+    /* height: 100%; */
+    width: 20%;
+    border-radius: 5px;
+    background-color: var(--pallete-3);
+    padding: 20px;
+}
+.finecont fieldset p{
+    font-weight: bolder;
+    height: fit-content;
+    width: fit-content;
+    margin: 0px;
+}
+.finecont fieldset{
+    padding: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.fntip{
+    width: 30%;
+}
+.clrip{
+    width: 33%;
+    border: none;
 }

@@ -1,7 +1,8 @@
 import sys
 import jwt
 from bson import ObjectId
-
+import re
+from email_validator import validate_email, EmailNotValidError
 sys.path.append(r'../models')
 sys.path.append(r'../routes')
 sys.path.append(r'../middleware')
@@ -37,15 +38,33 @@ def create():
     try:
             
         data = request.get_json()
-        hashed = bcrypt.hashpw(data['password'].encode('utf-8'),bcrypt.gensalt())
-        newuser = User(username=data['username'],email=data['email'],password=hashed)
+        username = data['username']
+        email = data['email']
+        password = data['password']
+
+        if not re.match("^[a-zA-Z0-9_]*$", username):
+            return jsonify({"error": "Invalid username. Only alphanumeric characters and underscores are allowed."}), 400
+
+        try:
+            v = validate_email(email) 
+            email = v["email"] 
+        except EmailNotValidError as e:
+            
+            return jsonify({"error":"not a valid email","status":0}), 400
+        
+        if len(password) < 8:
+            return jsonify({"error": "Password must be at least 8 characters long.","status":0}), 400
+        
+        hashed = bcrypt.hashpw(password.encode('utf-8'),bcrypt.gensalt())
+        newuser = User(username=username,email=email,password=hashed)
         
         User_collection.insert_one(vars(newuser))
 
-        return jsonify({"message":"success"}),200
+        return jsonify({"message":"success","status":1}),200
     
     except Exception as e:
-        return jsonify({"error":str(e)}),500
+        # print(e)
+        return jsonify({"error":"server error or User already exsits","status":0}),500
     
 
     
@@ -95,6 +114,7 @@ def validity():
             return jsonify({"valid":False}),500
         
     except Exception as e:
+        # print(e)
         return jsonify({"error from profile":str(e),"valid":False}),500
     
 @user_bp.route('/profile',methods=['GET'])

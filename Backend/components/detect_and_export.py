@@ -1,9 +1,10 @@
 
 import cv2 as cv
 import numpy as np
-import math
+import math , os
 import tensorflow as tf
 
+alphabets = [chr(y) for y in range(ord("A"),ord("Z")+1) ]+ [chr(y) for y in range(ord("a"),ord("z")+1) ]+[str(i) for i in range(10)]
 
 """utility functions"""
 
@@ -35,6 +36,43 @@ def padding(image):
     image = cv.resize(padded_image,(28,28))
     return image
 
+"""DETECTION MODEL UTILITIES"""
+
+def loadedModels(path,START):
+    alphabets = [chr(y) for y in range(ord("A"),ord("Z")+1) ]+ [chr(y) for y in range(ord("a"),ord("z")+1) ]+["D"+str(i) for i in range(10)]
+    # print(alphabets)
+    models =[]
+    for i in range(len(os.listdir(path))):
+        # print(f'{path}/{alphabets[START+i]}.h5')
+        model = tf.keras.models.load_model(f'{path}/{alphabets[START+i]}.h5')
+        models.append(model)
+    return models
+        
+def OVApipeline(models,model_Inp,conf_thresh):
+    """One Versus All classification"""
+    
+    result = np.zeros(len(models))
+    for i in range(len(models)):
+
+        res = models[i].predict(model_Inp,verbose =0)
+        
+        result[i] = res[0][0]
+     
+    return result
+
+def analysis(image,models,START):
+    
+    model_Inp = image.reshape(1,28,28)
+    result =OVApipeline(models,model_Inp,conf_thresh=0.7)
+    
+    index = np.argmax(result)
+
+    alph = "undef"
+    if(np.max(result)!=0):
+        alph = alphabets[index+START]
+    print("////////////",alph)
+    
+    return index
 
 """main functions"""
 
@@ -53,9 +91,11 @@ def Extract_Contours(img):
     edged = cv.Canny(gray, 50, 200)
     cords =[]
 
-    threshold_value = 128
+    threshold_value = 150
     _, binary_image = cv.threshold(gray, threshold_value, 255, cv.THRESH_BINARY)
+
     inputBINARY =cv.bitwise_not(binary_image)
+    inputBINARY = cv.GaussianBlur(inputBINARY, (5, 5), 0)
     contours,_ = cv.findContours(edged,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
     
     for cont in contours:
@@ -101,7 +141,7 @@ def Find_NearbyContours(distanceMatrix):
     by depth first search algorithm
 
     """""
-    visited = []  # stores indexes
+    visited = set()  # stores indexes
     connected = []  # stores array of connected index
     collector = []  # stores indexes
 
@@ -110,7 +150,7 @@ def Find_NearbyContours(distanceMatrix):
 
         if idx not in visited:
 
-            visited.append(idx)
+            visited.add(idx)
 
             if idx not in collector:
                 collector.append(idx)
@@ -137,24 +177,41 @@ def Find_NearbyContours(distanceMatrix):
 
     return connected
 
-def Detect_and_Store(connected,contours,inputBINARY,binary_image):
+def Detect_and_Store(connected,contours,inputBINARY,binary_image,STATE=0):
     """""
-    predicts the labels (alphabet) for the corresponding connected contours and dimentions then store it in an array
-    ALP_arr[]
-    Dimn_arr[]
+    Input : 
+        STATE : 0->Captial letters ,1->Small letter , 2->Digits
+
+    Function :
+        predicts the labels (alphabet) for the corresponding connected contours and dimentions then store it in an array
+        ALP_arr[]
+        Dimn_arr[]
 
     """""
+   
+    Capitial_model_path = "/home/abhijith/Desktop/Capital_Hand_Writing_Replicator/MachineLearning/Emnist-Models/ISO-MERGE-CAP"
+    Small_model_path = "/home/abhijith/Desktop/Capital_Hand_Writing_Replicator/MachineLearning/Emnist-Models/ISO-MERGE-SMALL"
+    Digit_model_path = "/home/abhijith/Desktop/Capital_Hand_Writing_Replicator/MachineLearning/Emnist-Models/ISO-MERGE-DIGIT"
+    
+    startVar=0
+    path = Capitial_model_path
 
+    if STATE ==1:
+        startVar = 26
+        path=Small_model_path
+
+    elif STATE ==2:
+        startVar = 52
+        path = Digit_model_path
+
+    models = loadedModels(path,startVar)
+    
     ALP_arr = []
     Dimn_arr =[]
 
-    for i in range(26):
+    for i in range(62):
         ALP_arr.append([])
         Dimn_arr.append([])
-
-    alphabets = [chr(y) for y in range(ord("A"),ord("Z")+1) ]
-
-    model = tf.keras.models.load_model("../../MachineLearning/Models/CAP_9997.h5")
     
     Similar_contour_cluster = []
     similar_contour_dimen = []
@@ -179,13 +236,11 @@ def Detect_and_Store(connected,contours,inputBINARY,binary_image):
             
             image = inputBINARY[y:y+h,x:x+w]
             image = padding(image)        
-            model_Inp = image.reshape(1,28,28)
-
-            result =model.predict(model_Inp)
             
-            index = np.argmax(result)
-        
-            index = np.argmax(result)
+            index = analysis(image,models,startVar)
+
+            index =index+startVar
+            
             ALP_arr[index].append(binary_image[y:y+h,x:x+w])
             Dimn_arr[index].append([w,h])
         
@@ -194,9 +249,9 @@ def Detect_and_Store(connected,contours,inputBINARY,binary_image):
 def Find_Mising(Dimn_arr):
     """
     finds the alphabet not detected by model
-
     """
-    alphabets = [chr(y) for y in range(ord("A"),ord("Z")+1) ]
+    alphabets = [chr(y) for y in range(ord("A"),ord("Z")+1) ]+ [chr(y) for y in range(ord("a"),ord("z")+1) ]+[str(i) for i in range(10)]
+
     miss_alph =[]
 
     for idx ,alp in enumerate(Dimn_arr):
@@ -204,11 +259,11 @@ def Find_Mising(Dimn_arr):
         if len(alp)==0:
             miss_alph.append(alphabets[idx])
 
+ 
     return miss_alph
             # query from db and find the missing alphabet in next update
-
-        
-def Main_Pipeline(img):
+ 
+def Main_Pipeline(img,STATE):
     
     """
     takes an image as input and return 
@@ -218,18 +273,17 @@ def Main_Pipeline(img):
     missing_Alpha : an array of missing alpbaets that are unable to detect by model
 
     """
-
+    
     cords,inputBINARY,contours,binary_image= Extract_Contours(img) 
 
     distanceMatrix = Set_DistanceMatrix(cords=cords)
-
+    
     connected = Find_NearbyContours(distanceMatrix=distanceMatrix)
-
-    ALP_arr ,Dimn_arr = Detect_and_Store(connected=connected,contours=contours,inputBINARY=inputBINARY,binary_image=binary_image)
-
+    
+    ALP_arr ,Dimn_arr = Detect_and_Store(connected=connected,contours=contours,inputBINARY=inputBINARY,binary_image=binary_image,STATE=STATE)
+    
     missing_Alpha = Find_Mising(Dimn_arr)
     
 
     return ALP_arr,Dimn_arr,missing_Alpha
 
-# Main_Pipeline()

@@ -37,13 +37,13 @@ function LoginForm(props) {
         })
             .then((response) => response.json())
             .then((data) => {
-                // Handle server response
+           
                 if(data.valid){
                     document.cookie = `token=${data.token};path=/`;
                     props.setLogState(true);
                     setAuthToken(`token=${data.token}`)
                 }
-                // Store token in cookies
+           
                 
             })
             .catch((error) => {
@@ -55,35 +55,48 @@ function LoginForm(props) {
     const createUser = (event) => {
         event.preventDefault();
 
-        // Send form details to server using fetch API
-        fetch('http://127.0.0.1:5000/user/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ "username":username, "password":password ,"email":email}),
-        })
-            .then((response) => response.json())
-            .then(() => {
-                // Handle server response
-                // console.log(data);
-                alert("User created Login")
-                window.location.reload()
-               
+        if(username.length>5){
+
+            fetch('http://127.0.0.1:5000/user/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ "username":username, "password":password ,"email":email}),
             })
-            .catch((error) => {
-                console.error(error);
-            });
+                .then((response) => response.json())
+                .then((res) => {
+                    // console.log(res)
+                    if(res.status===1){
+                        
+                        alert("User created Login")
+                        window.location.reload()
+                    }else{
+                        alert(`cannot create user ${res.error}`)
+                    }
+                    
+                    
+                   
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }else{
+            alert("short username")
+        }
     };
 
     return (
         <div className='logincont'>
-            <div className="wlcmcont">
-                <p>
-                    Welcome to Hand writing replicator
-                </p>
-            </div>
+            
             <form className='frm'>
+            <div className="HWRlegend"></div>
+
+                <div className="wlcmcont">
+                    <p>
+                        Embrace your uniqueness
+                    </p>
+                </div>
                 <label className='lbl'>
                     Username:
                     <br/>
