@@ -45,7 +45,7 @@ npm run dev
 ```
 # preview 
 
-## Display :
+## Writer :
 
 <img src="https://github.com/AGENTSJ/Hand_Writing_Replicator/assets/109428699/81e1754d-8bc1-458f-9b1d-16f9d559f1ef" height="300px"/>
 
@@ -55,5 +55,8 @@ npm run dev
 
 ## Dash board : 
 
-<img src="https://github.com/AGENTSJ/Hand_Writing_Replicator/assets/109428699/5d1f2349-2182-453f-8066-5ffd56afbc07)" height="300px">
+<img src="https://github.com/AGENTSJ/Hand_Writing_Replicator/assets/109428699/5d1f2349-2182-453f-8066-5ffd56afbc07" height="300px">
+
+## Guide :
+<img src="https://github.com/AGENTSJ/Hand_Writing_Replicator/assets/109428699/630c7a6a-2954-4a39-b9a8-642aa214f42a" height="300px">
 
