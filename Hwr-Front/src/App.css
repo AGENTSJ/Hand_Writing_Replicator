@@ -13,12 +13,20 @@
   background-repeat: no-repeat;
   
 }
+body{
+  height: 100vh;
+}
 .App {
   text-align: center;
+  height: 100%;
+}
+#root{
+  height: 100%;
 }
 
-
-
+.credit{
+  margin-top: 50px;
+}
 
 .App-header {
   background-color: #282c34;

@@ -163,12 +163,12 @@ const Dash = () => {
 
     })
     let result = await response.json()
-    // console.log(result)
-    // alert(result[0].missing_alph)
+
     const missing_alph = result[0].missing_alph
     setmissing(missing_alph)
   }
   function logout(){
+    document.cookie = "API=;"
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.reload()
   }
@@ -207,6 +207,8 @@ const Dash = () => {
             <UploadButton  STATE={2}/>
            
             </div>
+            <h4 className='credit'>Created by <a target='blank' href="https://www.linkedin.com/in/abhijith-sj-89031a243/">Abhijith sj</a> </h4>
+           
         </fieldset>
         
       </div>

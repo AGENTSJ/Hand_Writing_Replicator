@@ -1,12 +1,14 @@
 .dcont{
     margin-top: 100px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     background-color:var(--pallete-1);
     border-radius: 10px;
-    width: 80%;
+    width: 70%;
     position: relative;
 }
 .dashdiv{
     /* color: #e9ecef; */
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,6 +77,7 @@
 }
 .enabled{
     background-color: rgb(7, 233, 7);
+    animation: enbl 1s linear infinite;
 }
 fieldset legend{
     font-size: larger;
@@ -159,4 +162,9 @@ fieldset{
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+  @keyframes enbl {
+    0%{transform: scale(1);}
+    50%{transform: scale(1.15);}
+    100%{transform: scale(1);}
   }
