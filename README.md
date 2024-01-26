@@ -5,8 +5,8 @@ The project aims to recognize handwritten images containing capital English lett
 ## Install requirements
 
 ```bash
-conda create --name hwr
-conda activate hwr
+conda create -P hwr
+conda activate hwr/
 conda install flask-cors
 conda install flask
 conda install python=3.10
@@ -32,7 +32,9 @@ conda activate hwr
 cd /Backend/components
 python3 index.py
 ```
-### Run Frontend
+### Frontend is running on port 5000 on local host
+
+### Run Frontend Development with Vite
 
 ```bash
 cd ./Capital_Hand_Writing_Replicator/Hwr-Front
