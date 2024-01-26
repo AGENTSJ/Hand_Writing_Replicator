@@ -1,5 +1,5 @@
 :root{
-  --bg:url("./bgm.jpeg");
+  --bg:url("/bgm.jpeg");
   --pallete-3: #e9ecef;
   --pallete-2: #333333;
   --pallete-1:white;
@@ -7,18 +7,26 @@
 .backgroundDiv {
   height: 100vh;
   padding: 1em;
-  background-image: url('bgm.jpeg');
+  background-image: var(--bg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   
 }
+body{
+  height: 100vh;
+}
 .App {
   text-align: center;
+  height: 100%;
+}
+#root{
+  height: 100%;
 }
 
-
-
+.credit{
+  margin-top: 50px;
+}
 
 .App-header {
   background-color: #282c34;

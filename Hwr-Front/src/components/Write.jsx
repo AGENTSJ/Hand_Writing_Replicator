@@ -3,8 +3,9 @@ import { useContext ,useEffect} from 'react'
 import { AuthContext } from '../context/authcontext'
 import { useRef } from 'react'
 import'../styles/display.css'
+import Gen from './Gen'
 
-const Display = () => {
+const Write = () => {
   
     const {authToken} = useContext(AuthContext)
     //initialy setting an blank image
@@ -16,6 +17,7 @@ const Display = () => {
     let desc = useRef(null)
 
     useEffect(()=>{
+      desc.current.focus()
       desc.current.addEventListener("keydown", function(event) {
         
         // allow only letters and whitespaces
@@ -33,13 +35,14 @@ const Display = () => {
   async function fetchPic(){
     // console.log(filter_ref.current.value)
     let font_size = font_btn.current.value
+    let inputString = desc.current.value.replace(/[^a-zA-Z0-9 \t\n]/g, '');
       const  response = await fetch("http://127.0.0.1:5000/image/aout",{
           method:'POST',
           headers:{
             'Content-Type':'application/json',
             'Authorization':authToken.split('=')[1]
           },
-          body:JSON.stringify({"inputstring":desc.current.value,"font_size":font_size,"Filter":filter_ref.current.value,"Ink":ink_ref.current.value})
+          body:JSON.stringify({"inputstring":inputString,"font_size":font_size,"Filter":filter_ref.current.value,"Ink":ink_ref.current.value})
         })
         let data = await response.json()
         setimg(data.a4)
@@ -54,7 +57,7 @@ const Display = () => {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
     let byteArray = new Uint8Array(byteNumbers);
-    let blob = new Blob([byteArray], { type: "image/png" }); // Adjust the type based on your image format
+    let blob = new Blob([byteArray], { type: "image/png" }); 
 
    
     let link = document.createElement("a");
@@ -71,6 +74,13 @@ const Display = () => {
  
     document.body.removeChild(link);
   }
+  function high() {
+    desc.current.focus()
+    desc.current.classList.add('high');
+    setTimeout(() => {
+        desc.current.classList.remove('high');
+    }, 2000);
+}
    
   return (
     <>
@@ -78,15 +88,16 @@ const Display = () => {
 
       <div className="cont">
         <div className="btncont">
-          <button onClick={fetchPic} id="dbtn1" className='gtpicbtn'>Convert</button>
-          <button onClick={Download} id="dbtn1" className='gtpicbtn'>Download</button>
+          <Gen/>
         </div>
-        <img src={`data:image/png;base64,${img}`} className='image' alt="" />
-        <div className="finecont">
 
+        <img src={`data:image/png;base64,${img}`} onClick={high} className='image' alt="" />
+
+        <div className="finecont">
+          <h2>Customise</h2>
           <fieldset>
             <p>Font size</p>
-            <input type="number" ref={font_btn} className='fntip' defaultValue={0.5} />
+            <input type="number" ref={font_btn} className='fntip' defaultValue={1} />
           </fieldset>
 
           <fieldset>
@@ -99,14 +110,17 @@ const Display = () => {
             <input type="color" className='clrip' ref={ink_ref} />
           </fieldset>
 
+          <button onClick={fetchPic} id="dbtn1" className='gtpicbtn'>Convert</button>
+          <button onClick={Download} id="dbtn1" className='gtpicbtn'>Download</button>
+
         </div>
     
 
       </div>
-      
-          <textarea className='desc' placeholder='Insert text here' ref={desc}  cols="30" rows="10">
+        
+          <textarea className='desc' placeholder='Start Typing here then press enter  to see changes...' ref={desc}  cols="30" rows="10">
           </textarea>
-      
+          {/* <Gen/> */}
     </div>
     
     </>
@@ -115,5 +129,5 @@ const Display = () => {
 }
 
 
-export default Display
+export default Write
 

@@ -1,0 +1,69 @@
+.bckset{
+    width: 100%;
+    
+    background-image: var(--bg);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* height: 100%; */
+}
+.Guidecont {
+    
+    margin-top: 100px;
+    margin-bottom: 50px;
+    background-color:var(--pallete-1);
+    width: 70%;
+    height: fit-content;
+    color: #000;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.mrg-l {
+    margin-left: 20px;
+}
+.Guidecont p {
+   
+    width: fit-content;
+    text-align: center;
+    align-self: flex-start;
+    font-size: larger;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+
+.Guidecont ul li {
+    text-align: left;
+    font-size: larger;
+    margin-bottom: 10px;
+}
+.Guidecont h1{
+    margin-bottom: 50px;
+}
+.Guidecont h2{
+    width: fit-content;
+    margin-bottom: 50px;
+}
+.Guidecont h3 {
+    margin-top: 30px;
+    width: fit-content;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+.imgcont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.guideImg {
+    cursor: pointer;
+    width: 300px;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+}

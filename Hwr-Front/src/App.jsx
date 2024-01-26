@@ -2,9 +2,9 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Login from './components/login';
 import { AuthContext } from './context/authcontext';
-import Display from './components/display';
+import Write from './components/Write';
 import Dash from './components/Dash';
-
+import Guide from './components/Guide';
 
 import Utility from './components/utility';
 import {
@@ -19,13 +19,16 @@ const router = createBrowserRouter([
     path: "/",
     element: <Utility />,
     children: [
-      {
-        path: "display",
-        element: <Display />,
+      { path:"",
+        element:<Guide/>,
         index:true
       },
       {
-        path:"",
+        path: "write",
+        element: <Write />
+      },
+      {
+        path:"dash",
         element:<Dash/>
       }
     ],

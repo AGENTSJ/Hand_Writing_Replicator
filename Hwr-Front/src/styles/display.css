@@ -1,9 +1,12 @@
 .backgroundDiv{
     display: flex;
+    height: fit-content;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: var(--bg);
+    background-position: center;
+    background-size: cover;
     /* position: relative; */
    
 }
@@ -16,10 +19,12 @@
     /* position: relative; */
 }
 .image{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-top: 40px;
     border-radius: 5px;
     height: auto;
-    width: 100%;
+    width: 33%;
     max-width: 500px;
     border: 1px solid black;
    
@@ -47,13 +52,13 @@
     transform: translateY(5px);
 }
 .btncont{
-    padding: 20px;
-    
+    /* padding: 10px; */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 20%;
-
+    height: 47vh;
     border: 1px solid black;
     border-radius: 5px;
-    background-color: var(--pallete-3);
+    background-color: var(--pallete-1);
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -61,9 +66,11 @@
     align-items: center;
 }
 .desc{
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px;
     width: 97%;
-    /* margin-bottom: 100vh; */
+    min-height: 200px;
     margin-top: 10px;
     padding: 10px;
     color: black;
@@ -71,11 +78,21 @@
     box-sizing: border-box;
 }
 .finecont{
-    /* height: 100%; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    height: 60%;
     width: 20%;
     border-radius: 5px;
-    background-color: var(--pallete-3);
+    background-color: var(--pallete-1);
     padding: 20px;
+    border: 1px solid black;
+    padding-top: 0px;
+}
+.finecont button{
+    font-size: large;
 }
 .finecont fieldset p{
     font-weight: bolder;
@@ -97,4 +114,12 @@
 .clrip{
     width: 33%;
     border: none;
+}
+.high {
+    animation: high 1s ease-in-out infinite;
+}
+@keyframes high{
+    0%{transform:  scale(1);}
+    50%{transform: scale(1.1);}
+    100%{transform: scale(1);}
 }
