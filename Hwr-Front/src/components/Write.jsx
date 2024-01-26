@@ -75,6 +75,7 @@ const Write = () => {
     document.body.removeChild(link);
   }
   function high() {
+    desc.current.focus()
     desc.current.classList.add('high');
     setTimeout(() => {
         desc.current.classList.remove('high');
