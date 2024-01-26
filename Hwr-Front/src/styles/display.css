@@ -1,5 +1,6 @@
 .backgroundDiv{
     display: flex;
+    height: fit-content;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -23,7 +24,7 @@
     margin-top: 40px;
     border-radius: 5px;
     height: auto;
-    width: 100%;
+    width: 33%;
     max-width: 500px;
     border: 1px solid black;
    
@@ -54,7 +55,7 @@
     /* padding: 10px; */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 20%;
-    height: 60%;
+    height: 47vh;
     border: 1px solid black;
     border-radius: 5px;
     background-color: var(--pallete-1);
@@ -69,7 +70,7 @@
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 5px;
     width: 97%;
-    /* margin-bottom: 100vh; */
+    min-height: 200px;
     margin-top: 10px;
     padding: 10px;
     color: black;

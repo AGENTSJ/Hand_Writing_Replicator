@@ -13,14 +13,14 @@
     top: 0;
     z-index: 1;
     padding: 2px;
-    font-size: 25px;
+    font-size: x-large;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--pallete-2)    ;
     height: fit-content;
 
-    height: 60px;
+    height: 40px;
 }
 .nav a{
 
@@ -44,7 +44,7 @@
     display: flex;
     justify-content: center; 
     align-items: center; 
-    height: 60px;
+    /* height: 60px; */
     background-color: #202020; 
     width: 100%; 
  

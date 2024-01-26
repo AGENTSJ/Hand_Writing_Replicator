@@ -118,7 +118,7 @@ const Write = () => {
 
       </div>
         
-          <textarea className='desc' placeholder='Start Typing here to see changes...' ref={desc}  cols="30" rows="10">
+          <textarea className='desc' placeholder='Start Typing here then press enter  to see changes...' ref={desc}  cols="30" rows="10">
           </textarea>
           {/* <Gen/> */}
     </div>

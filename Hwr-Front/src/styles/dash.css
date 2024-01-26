@@ -7,7 +7,7 @@
     position: relative;
 }
 .dashdiv{
-    /* color: #e9ecef; */
+  
     height: fit-content;
     display: flex;
     justify-content: center;
@@ -146,7 +146,7 @@ fieldset{
   .HWRlegend{
     background-color: var(--pallete-1);
     border: 1px solid black;
-    background-image: url("./hwr.svg");
+    background-image: url("/hwr.svg");
     min-width: 100px;
     min-height: 100px;
     height: 9vw;

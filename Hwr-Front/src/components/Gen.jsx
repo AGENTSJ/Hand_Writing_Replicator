@@ -103,11 +103,12 @@ const Gen = () => {
             <div className="api-inp-cont">
                 <h2>Use Generative AI</h2>
                 <h4>Add Your Api key</h4>
-                <input type="text" placeholder="Google Gemini-Pro Api key" ref={keyref} />
+                <input type="password" placeholder="Google Gemini-Pro Api key" ref={keyref} />
                 <button onClick={store_Api_Key}>Add</button>
-                <h4>Get Your Free Api key</h4>
+                <h4>See <Link to="/guide">Guide</Link> for more info</h4>
+                {/* <h4>Get Your Free Api key</h4>
                 <a href="https://ai.google.dev/tutorials/setup">https://ai.google.dev/tutorials/setup</a>
-                <p>Its optional you can continue using the app by typing into the Text box bellow. Visit <Link to="/guide">Guide</Link> for more info</p>
+                <p>Its optional you can continue using the app by typing into the Text box bellow. Visit <Link to="/guide">Guide</Link> for more info</p> */}
                 {/* <p>Visit <Link to="/guide">Guide</Link> for more info</p> */}
             </div>
 

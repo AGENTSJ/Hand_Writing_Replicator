@@ -64,6 +64,10 @@ async function download(e) {
                 </h2>
                 <p className='mrg-l'>
                         The Api key is stored inside cookies in a encrypted format and hence is secure
+
+                </p>
+                <p className='mrg-l'>
+                        Loging out will clear the Api key from cookie
                 </p>
 
                     <h4 className='credit'>Created by <a target='blank' href="https://www.linkedin.com/in/abhijith-sj-89031a243/">Abhijith sj</a> </h4>

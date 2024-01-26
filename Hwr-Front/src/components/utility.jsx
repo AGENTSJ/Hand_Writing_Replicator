@@ -26,7 +26,7 @@ const Utility = () => {
           <Link  to=""  ref={guide} >Guide</Link>
         </div>
         <div className="routes" onClick={routeWrite}>
-          <Link  to="write" ref={writ}>Write</Link>
+          <Link  to="write" ref={writ}>Writer</Link>
         </div>
         <div className="routes" onClick={routeDash}>
           <Link  to="dash"  ref={dash} >Dash</Link>
