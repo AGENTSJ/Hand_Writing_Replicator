@@ -2,6 +2,7 @@
 
 The project aims to recognize handwritten images containing all English letters and digits  from user input, followed by storing them in a dedicated database. Upon the user's request for the conversion of an English paragraph, the application seamlessly transforms the input string into the user's distinctive handwriting. This ensures a personalized and refined experience for users seeking a unique representation of their text in a handwritten format.
 
+
 ## models trained on emnist data set with OVA(One versus Rest) Classification technique
 
 ## Install requirements
@@ -34,7 +35,7 @@ conda activate hwr
 cd /Backend/components
 python3 index.py
 ```
-### Frontend is running on port 5000 on local host
+### Frontend is served on port 5000 on local host
 
 ### Run Frontend Development with Vite
 
