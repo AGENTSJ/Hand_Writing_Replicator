@@ -2,7 +2,7 @@ import sys
 import jwt
 from bson import ObjectId
 import re
-from email_validator import validate_email, EmailNotValidError
+# from email_validator import validate_email, EmailNotValidError
 sys.path.append(r'../models')
 sys.path.append(r'../routes')
 sys.path.append(r'../middleware')
